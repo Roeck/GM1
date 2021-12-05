@@ -53,4 +53,25 @@ class Game {
             game.renderGames()
         }
     }   
+
+    renderGame() {
+
+        const gameLi = document.createElement('card')
+        gameLi.dataset.id = this.id
+        gameList.appendChild(gameLi)
+
+        const h3 = document.createElement('h3')
+        h3.className = ("h3")
+        h3.innerText = this.name
+
+        const p = document.createElement('h6')
+        p.className = ("card-text")
+        p.innerText = "Producer: " + this.producer + " | " + "Score: " + this.score
+
+        const img = document.createElement('img')
+        img.src = this.image
+        img.width = 130
+
+        gameLi.append(h3, img, p)
+    }
 }
