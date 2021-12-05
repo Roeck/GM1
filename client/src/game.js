@@ -44,7 +44,13 @@ class Game {
                 for(let game of games.data) {
                     let newGame = new Game(game)
                 }
-                // this.renderGames()
+                this.renderGames()
             })
     }
+
+    static renderGames() {
+        for(let game of this.allGames) {
+            game.renderGames()
+        }
+    }   
 }
