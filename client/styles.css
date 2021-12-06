@@ -5,6 +5,58 @@ body {
     justify-content: center;
 }
 
+/* SELECTORS */
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+    color: white;
+}
+
+/* FORMS */
+
+form {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+/* CARD */
+
+#card {
+  display: contents;
+  background-color:#14151f;
+  color: white;
+  border-width: 2px;
+  border-color: white;
+}
+
+.card img {
+  margin-left: 3rem;
+  border-width: 10px;
+}
+
+.card h6 {
+  color: white;
+  padding-top: 1rem;
+  padding-left: 2.5rem;
+}
+
+.card p {
+  color: white;
+  padding-left: 1.3rem;
+}
+
+.card .btn-outline-secondary {
+  width: 100%;
+}
+
 /* LOGO */
 
 .logo {
