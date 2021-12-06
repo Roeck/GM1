@@ -74,4 +74,14 @@ class Game {
 
         gameLi.append(h3, img, p)
     }
+
+    deleteGame() {
+        const gameId=this.parentElement.dataset.id
+
+        fetch(`${gamesURL}/${gameId}`,{
+            method: "DELETE"
+        })
+        // .catch(err => alert(err))
+        this.parentElement.remove()
+    }
 }
