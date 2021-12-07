@@ -14,7 +14,27 @@ class Comment {
         const commentList = e.target.previousElementSibling
         const gameId = e.target.parentElement.dataset.id
 
-        // Comment.submitComment(commentMessage, commentList, gameId)
-        // e.target.reset()
+        Comment.submitComment(commentMessage, commentList, gameId)
+        e.target.reset()
+    }
+
+    static submitComment(commentMessage, commentList, gameId) {
+
+        fetch(commentsURL,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify({
+                message: commentMessage,
+                game_id: gameId,
+            })
+        })
+            .then(response => response.json())
+            .then(comment => {
+                let newComment = new Comment(comment)
+                newComment.renderComment(commentList)
+            })
     }
 }
