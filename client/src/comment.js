@@ -37,4 +37,20 @@ class Comment {
                 newComment.renderComment(commentList)
             })
     }
+
+    renderComment(commentList) {
+
+        const p = document.createElement('p')
+        p.dataset.id = this.id
+        p.innerText = "- " + this.message + " "
+
+        const deleteButton = document.createElement('button')
+        deleteButton.innerText = "Delete"
+        deleteButton.className = "btn btn-outline-danger btn-sm"
+
+        p.append(deleteButton)
+
+        deleteButton.addEventListener("click",this.deleteComment)
+        commentList.appendChild(p)
+    }
 }
