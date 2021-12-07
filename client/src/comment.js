@@ -1,14 +1,14 @@
 class Comment {
 
     constructor(comment) {
-
+        
         this.id = comment.id
         this.message = comment.message
         this.game_id = comment.game_id
         // console.log(comment.id)
     }
 
-    static createComment(e) {
+    static createComment(e){
         e.preventDefault()
         const commentMessage = e.target.children[0].value
         const commentList = e.target.previousElementSibling
@@ -18,27 +18,7 @@ class Comment {
         e.target.reset()
     }
 
-    static submitComment(commentMessage, commentList, gameId) {
-
-        fetch(commentsURL,{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            body: JSON.stringify({
-                message: commentMessage,
-                game_id: gameId,
-            })
-        })
-            .then(response => response.json())
-            .then(comment => {
-                let newComment = new Comment(comment)
-                newComment.renderComment(commentList)
-            })
-    }
-
-    renderComment(commentList) {
+    renderComment(commentList){
 
         const p = document.createElement('p')
         p.dataset.id = this.id
@@ -49,8 +29,39 @@ class Comment {
         deleteButton.className = "btn btn-outline-danger btn-sm"
 
         p.append(deleteButton)
-
-        deleteButton.addEventListener("click",this.deleteComment)
+        
+        deleteButton.addEventListener("click", this.deleteComment)
         commentList.appendChild(p)
+    }
+
+    static submitComment(commentMessage, commentList, gameId){
+
+        fetch(commentsURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify({
+                message: commentMessage,
+                game_id: gameId,
+            })
+        })
+        .then(response => response.json())
+        .then(comment => {
+            let newComment = new Comment(comment)
+            newComment.renderComment(commentList)
+        })
+    
+    }
+    
+    deleteComment(){
+        
+        const commentId = this.parentElement.dataset.id
+             fetch(`${commentsURL}/${commentId}`,{
+             method: "DELETE"
+         })
+         
+         this.parentElement.remove()
     }
 }
